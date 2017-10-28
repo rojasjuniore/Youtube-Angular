@@ -1,0 +1,37 @@
+<h1>Canal de Youtube</h1>
+<hr>
+<div class="row">
+  <div class="p-3" *ngFor="let item of videos">
+    <div class="card " style="width: 20rem;">
+      <img class="card-img-top" [src]="item.thumbnails.medium.url" [alt]="item.title">
+      <div class="card-body">
+        <h4 class="card-title">{{item.channelTitle}}</h4>
+        <p class="card-text">{{ item.title }}</p>
+        <a (click)="verVideo(item)" class="btn btn-primary btn-block">Ver Video</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="m-5">
+    <button (click)="cargarMas()" type="button" class="btn btn-secondary btn-block">Cargar mas</button>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    data-backdrop="static">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content center" *ngIf="videoSel">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{videoSel.title}}</h5>
+      </div>
+      <div class="modal-body">
+        <iframe width="100%" height="400" [src]="videoSel.resourceId.videoId | domseguro" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="modal-footer">
+        <button (click)="cerrarModal(item)" type="button" class="btn btn-secondary">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
